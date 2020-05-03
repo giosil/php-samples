@@ -1,0 +1,3 @@
+Il quadrato &egrave; una figura geometrica di forma quadrata. 
+Tale figura ha quattro lati di uguale lunghezza.
+

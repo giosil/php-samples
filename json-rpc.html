@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JSON-RPC</title>
+  </head>
+  <body>
+    <h1>JSON-RPC</h1>
+    
+    <div id="result"></div>
+    
+    <script type="text/javascript" src="jrpc.js"></script>
+    <script>
+      window.onload = function() {
+        jrpc.execute('COUNTRIES.findByContinent', ['Europe'], function(result){
+          if(!result || !result.length) {
+            document.getElementById("result").innerHTML = "No result.";
+            return;
+          }
+          var html = '';
+          for(var i = 0; i < result.length; i++) {
+            var r = result[i];
+            html += '<b>Code:</b> ' + r['code'] + ', ';
+            html += '<b>Name</b>: ' + r['name'] + ', ';
+            html += '<b>Continent</b>: ' + r['continent'] + ', ';
+            html += '<b>Region</b>: ' + r['region'] + ', ';
+            html += '<b>Population:</b> ' + r['population'] + '<br>';
+          }
+          document.getElementById("result").innerHTML = html;
+        });
+      }
+    </script>
+  </body>
+</html>

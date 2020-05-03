@@ -1,0 +1,2 @@
+Il cerchio &egrave; una figura geometrica di forma circolare. 
+Tale figura non ha lati, ma per il calcolo del perimetro o dell'area ci si riferisce al suo raggio o diametro.

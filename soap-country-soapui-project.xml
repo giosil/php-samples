@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="b0093209-fdb0-4ace-a5bc-8138b4c8e3de" activeEnvironment="Default" name="soap_country" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="d12849d1-c571-465c-97bb-d9d73d7b4c09" wsaVersion="NONE" name="WORLDwsdlBinding" type="wsdl" bindingName="{urn:WORLDwsdl}WORLDwsdlBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost/php-samples/soap_country.php?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost/php-samples/soap_country.php?wsdl"><con:part><con:url>http://localhost/php-samples/soap_country.php?wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="urn:WORLDwsdl" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:WORLDwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema targetNamespace="urn:WORLDwsdl">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+      <xsd:complexType name="country">
+        <xsd:all>
+          <xsd:element name="code" type="xsd:string"/>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="continent" type="xsd:string"/>
+          <xsd:element name="region" type="xsd:string"/>
+          <xsd:element name="population" type="xsd:integer"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfCountry">
+        <xsd:complexContent>
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:country[]" minOccurs="0" maxOccurs="unbounded" xmlns:wsdl1="http://schemas.xmlsoap.org/wsdl/"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+  </types>
+  <message name="findCountryRequest">
+    <part name="continent" type="xsd:string"/>
+  </message>
+  <message name="findCountryResponse">
+    <part name="return" type="tns:ArrayOfCountry"/>
+  </message>
+  <portType name="WORLDwsdlPortType">
+    <operation name="findCountry">
+      <documentation>Find countries by continent</documentation>
+      <input message="tns:findCountryRequest"/>
+      <output message="tns:findCountryResponse"/>
+    </operation>
+  </portType>
+  <binding name="WORLDwsdlBinding" type="tns:WORLDwsdlPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="findCountry">
+      <soap:operation soapAction="urn:WORLDwsdl#findCountry" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:WORLDwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:WORLDwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="WORLDwsdl">
+    <port name="WORLDwsdlPort" binding="tns:WORLDwsdlBinding">
+      <soap:address location="http://localhost/php-samples/soap_country.php"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost/php-samples/soap_country.php</con:endpoint></con:endpoints><con:operation id="e7bce0b2-f586-4ab2-bf4b-1e2a4cb88794" isOneWay="false" action="urn:WORLDwsdl#findCountry" name="findCountry" bindingOperationName="findCountry" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="df253dd8-03aa-4694-8c61-cf46611127ed" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/php-samples/soap_country.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:WORLDwsdl">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <urn:findCountry soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <continent xsi:type="xsd:string">Europe</continent>\r
+      </urn:findCountry>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:WORLDwsdl#findCountry"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

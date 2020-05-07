@@ -25,10 +25,10 @@ $server->register('findCountry', // method name
   array(
     'return' => 'tns:ArrayOfCountry'
   ), // output parameters
-  'urn:WORLDwsdl',       // namespace
-  'urn:WORLDwsdl#findCountry', // soapaction
-  'rpc',            // style
-  'encoded',          // use
+  'urn:WORLDwsdl',              // namespace
+  'urn:WORLDwsdl#findCountry',  // soapaction
+  'rpc',                        // style
+  'encoded',                    // use
   'Find countries by continent' // documentation
 );
 

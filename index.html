@@ -2,13 +2,85 @@
 <html>
   <head>
     <title>PHP Samples</title>
+  <style>
+    #foldhead{cursor:pointer;font-weight:bold;list-style-image:url(img/fold.gif)}
+    #foldlist{list-style-image:url(img/list.gif)}
+  </style>
+  <script>
+    var img1=new Image();
+    var img2=new Image();
+    img1.src="img/fold.gif";
+    img2.src="img/open.gif";
+    
+    function documentOnClick(e){
+      var ie_old = (e == undefined);
+      var currentNode = ie_old ? event.srcElement : e.target;
+      if(currentNode.id=="foldhead"){
+        var folderContent = ie_old ? currentNode.childNodes[1] : currentNode.nextSibling.nextSibling;
+        if(folderContent.style.display=="none"){
+          folderContent.style.display="";
+          currentNode.style.listStyleImage="url(img/open.gif)";
+        }
+        else{
+          folderContent.style.display="none";
+          currentNode.style.listStyleImage="url(img/fold.gif)";
+        }
+      }
+    }
+    
+    document.onclick = documentOnClick;
+    
+    function treeExpandAll(){
+      var allul = document.getElementsByTagName('UL');
+      if(!allul || !allul.length) return;
+      for(var i = 0; i < allul.length; i++){
+        var eul = allul[i];
+        if(eul.id!="foldlist")continue;
+        eul.style.display="";
+      }
+    }
+    
+    function treeCollapseAll(){
+      var allul = document.getElementsByTagName('UL');
+      if(!allul || !allul.length) return;
+      for(var i = 0; i < allul.length; i++){
+        var eul = allul[i];
+        if(eul.id!="foldlist")continue;
+        eul.style.display="none";
+      }
+    }
+  </script>
   </head>
   <body>
     <h1>PHP Samples</h1>
-    
-    <a href="search.php">Search engine</a><br>
-    <a href="rest_country.php?c=Europe">REST service</a><br>
-    <a href="json-rpc.html">JSON-RPC service</a><br>
-    <a href="soap_country.php?wsdl">SOAP service</a><br>
+    <hr>
+    <p>MySQL e world database is required.</p>
+    <ul>
+      <li id="foldhead">&nbsp;Samples</li>
+      <ul id="foldlist" style="display:none">
+        <li id="foldhead">&nbsp;Search engine</li>
+        <ul id="foldlist" style="display:none">
+          <li><a href="search.php">Simple search</a></li>
+        </ul>
+        <li id="foldhead">&nbsp;RESTful</li>
+        <ul id="foldlist" style="display:none">
+          <li><a href="rest_country.php?c=Europe">REST service</a></li>
+        </ul>
+        <li id="foldhead">&nbsp;JSON-RPC</li>
+        <ul id="foldlist" style="display:none">
+          <li><a href="json-rpc.html">JSON-RPC service</a></li>
+        </ul>
+        <li id="foldhead">&nbsp;Modulistica ISED</li>
+        <ul id="foldlist" style="display:none">
+          <li><a href="soap_country.php?wsdl">SOAP service</a></li>
+        </ul>
+      </ul>
+    </ul>
+    <hr>
+    <script>
+      window.onload = function() {
+        treeExpandAll();
+      }
+    </script>
   </body>
 </html>

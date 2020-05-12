@@ -51,7 +51,7 @@
     }
   </script>
   </head>
-  <body>
+  <body onload="bodyOnLoad()">
     <h1>PHP Samples</h1>
     <hr>
     <p>MySQL e world database is required.</p>
@@ -82,7 +82,7 @@
     </ul>
     <hr>
     <script>
-      window.onload = function() {
+      function bodyOnLoad() {
         treeExpandAll();
       }
     </script>

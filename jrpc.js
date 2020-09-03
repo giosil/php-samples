@@ -41,9 +41,9 @@ JRPC.prototype.execute = function(methodName, params, successHandler, exceptionH
   this.callId++;
   var request, postData;
   request = {
-    jsonrpc : "2.0",
-    method : methodName,
-    id : this.callId
+    jsonrpc: "2.0",
+    method: methodName,
+    id: this.callId
   };
   if (params) request.params = params;
   postData = JSON.stringify(request);
@@ -82,8 +82,7 @@ JRPC.prototype.execute = function(methodName, params, successHandler, exceptionH
               _onRpcError(response.error);
             }
           } 
-          else 
-          if (typeof successHandler == 'function'){
+          else if (typeof successHandler == 'function'){
             var result = response.result;
             _this.upgradeValues(result);
             successHandler(result);

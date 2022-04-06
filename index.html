@@ -15,8 +15,10 @@
     function documentOnClick(e){
       var ie_old = (e == undefined);
       var currentNode = ie_old ? event.srcElement : e.target;
+      if(currentNode == null) return;
       if(currentNode.id=="foldhead"){
         var folderContent = ie_old ? currentNode.childNodes[1] : currentNode.nextSibling.nextSibling;
+        if(folderContent == null) return;
         if(folderContent.style.display=="none"){
           folderContent.style.display="";
           currentNode.style.listStyleImage="url(img/open.gif)";

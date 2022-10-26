@@ -3,27 +3,50 @@
   <head>
     <title>PHP Samples</title>
   <style>
-    #foldhead{cursor:pointer;font-weight:bold;list-style-image:url(img/fold.gif)}
-    #foldlist{list-style-image:url(img/list.gif)}
+    .tree-container {
+      text-align: left;
+      padding-left: 42px;
+    }
+    #foldhead {
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: -18px;
+      list-style-image: url(img/tree_fold.png)
+    }
+    #foldhead>p {
+      position: relative;
+      bottom: 18px;
+    }
+    #foldhead.open {
+      list-style-image: url(img/tree_open.png)
+    }
+    #foldlist {
+      font-size: 16px;
+      margin-bottom: -18px;
+      list-style-image: url(img/tree_item.png)
+    }
+    #foldlist>li>a {
+      position: relative;
+      bottom: 18px;
+    }
   </style>
   <script>
-    // var img1=new Image(); img1.src="img/fold.gif";
-    // var img2=new Image(); img2.src="img/open.gif";
-    
     function documentOnClick(e){
       var ie_old = (e == undefined);
-      var currentNode = ie_old ? event.srcElement : e.target;
-      if(currentNode == null) return;
-      if(currentNode.id=="foldhead"){
-        var folderContent = ie_old ? currentNode.childNodes[1] : currentNode.nextSibling.nextSibling;
+      var n = ie_old ? event.srcElement : e.target;
+      if(n == null) return;
+      if(n.tagName != 'LI') n = n.parentNode;
+      if(n.id=="foldhead"){
+        var folderContent = ie_old ? n.childNodes[1] : n.nextSibling.nextSibling;
         if(folderContent == null) return;
         if(folderContent.style.display=="none"){
           folderContent.style.display="";
-          currentNode.style.listStyleImage="url(img/open.gif)";
+          n.style.listStyleImage="url(img/tree_open.png)";
         }
         else{
           folderContent.style.display="none";
-          currentNode.style.listStyleImage="url(img/fold.gif)";
+          n.style.listStyleImage="url(img/tree_fold.png)";
         }
       }
     }
@@ -54,32 +77,34 @@
   <body onload="bodyOnLoad()">
     <h1>PHP Samples</h1>
     <hr>
-    <p>MySQL e world database is required.</p>
+    <p><img src="img/alert.png" style="margin-bottom:-2px;"> MySQL e world database is required.</p>
+    <div class="tree-container">
     <ul>
-      <li id="foldhead">&nbsp;Samples</li>
+      <li id="foldhead" class="open"> <p>Samples</p></li>
       <ul id="foldlist" style="display:none">
-        <li id="foldhead">&nbsp;PHP info</li>
+        <li id="foldhead" class="open"> <p>PHP info</p></li>
         <ul id="foldlist" style="display:none">
           <li><a href="php.php">phpinfo</a></li>
         </ul>
-        <li id="foldhead">&nbsp;Search engine</li>
+        <li id="foldhead" class="open"> <p>Search engine</p></li>
         <ul id="foldlist" style="display:none">
           <li><a href="search.php">Simple search</a></li>
         </ul>
-        <li id="foldhead">&nbsp;RESTful</li>
+        <li id="foldhead" class="open"> <p>RESTful</p></li>
         <ul id="foldlist" style="display:none">
           <li><a href="rest_country.php?c=Europe">REST service</a></li>
         </ul>
-        <li id="foldhead">&nbsp;JSON-RPC</li>
+        <li id="foldhead" class="open"> <p>JSON-RPC</p></li>
         <ul id="foldlist" style="display:none">
           <li><a href="json-rpc.html">JSON-RPC service</a></li>
         </ul>
-        <li id="foldhead">&nbsp;Modulistica ISED</li>
+        <li id="foldhead" class="open"> <p>SOAP</p></li>
         <ul id="foldlist" style="display:none">
           <li><a href="soap_country.php?wsdl">SOAP service</a></li>
         </ul>
       </ul>
     </ul>
+    </div>
     <hr>
     <script>
       function bodyOnLoad() {
